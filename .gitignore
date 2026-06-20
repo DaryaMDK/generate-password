@@ -28,16 +28,9 @@ media/
 media/
 
 # IDE
-.vscode/
 .idea/
-*.swp
-*.swo
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.vscode/
+*.iml
 *.pydevproject
 .project
 .pydevproject
