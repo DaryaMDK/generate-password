@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор паролей</title>
+    <link rel="stylesheet" href="{% static 'password/styles.css' %}">
+    <link rel="icon" href="{% static 'password/images/favicon.ico' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <img src="{% static 'password/images/lock.png' %}" alt="Замочек">
+            Генератор паролей
+        </h1>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" name="generate">СГЕНЕРИРОВАТЬ</button>
+        </form>
+
+        {% if pass_key %}
+            <p>Пароль: <b id="pass-for-js">{{ pass_key }}</b></p>
+            <button id="copy-for-js" class="copy-button">СКОПИРОВАТЬ</button>
+        {% endif %}
+    </div>
+    <script src="{% static 'password/copy.js' %}"></script>
+    <div class="container security-checker">
+        <h2>
+            <img src="{% static 'password/images/lock.png' %}" alt="Замочек">
+            Проверка пароля на безопасность
+        </h2>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            <p class="form-p">
+                <label for="password-input">Введите пароль:</label>
+                <input type="text" id="password-input" name="password" placeholder="Введите ваш пароль" autocomplete="off">
+            </p>
+            <button type="submit" name="check">ПРОВЕРИТЬ</button>
+        </form>
+        {% if check_result %}
+            <div id="security-result" class="result-box">
+                <p id="result-text" class="{% if 'безопасен' in check_result %}success{% else %}error{% endif %}">
+                    {{ check_result }}
+                </p>
+            </div>
+        {% endif %}
+
+        <div id="security-result" class="result-box" style="display: none;">
+            <p id="result-text"></p>
+            <p id="result-details"></p>
+        </div>
+    </div>
+    <script src="{% static 'password/security-check.js' %}"></script>
+</body>
+</html>

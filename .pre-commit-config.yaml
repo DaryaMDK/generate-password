@@ -1,0 +1,30 @@
+repos:
+  # 1. Общие хуки
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace        # Удаляет пробелы в конце строк
+      - id: end-of-file-fixer          # Добавляет пустую строку в конце файла
+      - id: check-yaml                 # Проверяет валидность YAML
+      - id: check-added-large-files    # Проверяет большие файлы
+        args: ['--maxkb=500']
+      - id: check-json                 # Проверяет валидность JSON
+      - id: check-toml                 # Проверяет валидность TOML
+      - id: check-merge-conflict       # Проверяет конфликты слияния
+      - id: detect-private-key         # Проверяет приватные ключи
+      - id: debug-statements           # Проверяет отладочные операторы
+
+  # 2. Ruff (линтер)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.1
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+        files: \.py$
+
+  # 3. Ruff (форматтер)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.1
+    hooks:
+      - id: ruff-format
+        files: \.py$

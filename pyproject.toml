@@ -1,0 +1,52 @@
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "migrations",
+    "static",
+    "media",
+    "venv",
+    ".env",
+    "*.egg-info",
+    "dist",
+    "build"
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM", "RET", "ARG", "PTH"]
+ignore = ["D100", "D104", "D107", "E501", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/migrations/*.py" = ["ALL"]
+"**/tests/*.py" = ["D", "ARG"]
+"**/settings.py" = ["D"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["password"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "parents"
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+# ========== НАСТРОЙКИ ДЛЯ DJANGO ==========
+[tool.ruff.flake8-tidy-imports]
+ban-relative-imports = "parents"
+
+[tool.ruff.per-file-ignores]
+# Для файлов миграций отключаем большинство правил
+"**/migrations/*.py" = ["ALL"]
+# Для тестов отключаем некоторые правила
+"**/tests/*.py" = ["D", "ARG"]
+# Для файлов настроек отключаем документацию
+"**/settings.py" = ["D"]
