@@ -23,6 +23,8 @@
 ```bash
 # Клонирование репозитория
 git clone https://github.com/DaryaMDK/generate-password.git
+
+# Переход в проект
 cd generate-password
 
 # Создание виртуального окружения

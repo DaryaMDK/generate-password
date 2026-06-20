@@ -57,7 +57,7 @@ def index(request):
             if password:
                 check_result = check_password(password)
             else:
-                check_result = '⚠️ Пожалуйста, введите пароль'
+                check_result = 'Пожалуйста, введите пароль'
 
     return render(
         request,
